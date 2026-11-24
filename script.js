@@ -185,4 +185,8 @@ pieces.forEach((piece) => {
   piece.addEventListener("pointercancel", finishDragging);
 });
 
-window.addEventListener("load", scatterPieces, { once: true });
+if (document.readyState === "complete") {
+  scatterPieces();
+} else {
+  window.addEventListener("load", scatterPieces, { once: true });
+}

@@ -4,7 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Puzzle</title>
-  <link rel="stylesheet" href="style.css">
+  <script>
+    const today = new Date();
+    const cacheVersion = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = `style.css?v=${cacheVersion}`;
+    document.head.append(stylesheet);
+  </script>
 </head>
 <body>
   <main class="board">
@@ -35,6 +42,10 @@
 
   <audio id="screech-sound" src="sounds/SCREECH.wav" preload="auto" loop></audio>
   <audio id="pop-sound" src="sounds/POP.wav" preload="auto"></audio>
-  <script src="script.js"></script>
+  <script>
+    const app = document.createElement("script");
+    app.src = `script.js?v=${cacheVersion}`;
+    document.body.append(app);
+  </script>
 </body>
 </html>
