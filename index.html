@@ -4,6 +4,156 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #fff;
+      font-family: Calibri, Arial, sans-serif;
+    }
+
+    .menu {
+      position: fixed;
+      z-index: 10;
+      top: 16px;
+      left: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .menu-button {
+      width: 18vw;
+      max-width: 200px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      transition: opacity 120ms ease, transform 120ms ease;
+    }
+
+    .menu-button img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .menu-button:active {
+      opacity: 0.65;
+      transform: scale(1.06);
+    }
+
+    .canvas {
+      position: fixed;
+      z-index: 1;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .tracking-image,
+    #camera-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .tracking-image {
+      z-index: 2;
+      width: 0;
+      height: auto;
+      max-width: none;
+      transform-origin: center;
+      user-select: none;
+    }
+
+    #face-overlay {
+      z-index: 2;
+    }
+
+    #mouth-overlay {
+      z-index: 3;
+    }
+
+    .hand-overlay {
+      z-index: 4;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #camera-video {
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .camera-controls {
+      position: fixed;
+      z-index: 10;
+      right: 16px;
+      bottom: 16px;
+      display: grid;
+      justify-items: end;
+      gap: 8px;
+    }
+
+    #camera-toggle {
+      padding: 8px 12px;
+      border: 1px solid #171512;
+      background: #fff;
+      color: #171512;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    #camera-toggle:disabled {
+      cursor: wait;
+    }
+
+    #camera-status {
+      max-width: min(320px, 80vw);
+      margin: 0;
+      padding: 4px 6px;
+      background: #fff;
+      color: #171512;
+      font-size: 0.875rem;
+      text-align: right;
+    }
+  </style>
 </head>
-<body></body>
+<body>
+  <main class="canvas" aria-label="Face and hand tracking canvas">
+    <video id="camera-video" autoplay muted playsinline aria-hidden="true"></video>
+    <img id="face-overlay" class="tracking-image" src="images/FACE.png" alt="" hidden>
+    <img id="mouth-overlay" class="tracking-image" src="images/MOUTH CLOSED.png" alt="" data-state="closed" hidden>
+    <img class="tracking-image hand-overlay" src="images/HAND.png" alt="" hidden>
+    <img class="tracking-image hand-overlay" src="images/HAND.png" alt="" hidden>
+  </main>
+
+  <header class="menu">
+    <button class="menu-button" type="button" aria-label="Main Menu">
+      <img src="images/MAIN MENU.png" alt="">
+    </button>
+    <button class="menu-button" type="button" aria-label="Options">
+      <img src="images/OPTIONS.png" alt="">
+    </button>
+    <button class="menu-button" type="button" aria-label="Restart">
+      <img src="images/RESTART.png" alt="">
+    </button>
+  </header>
+
+  <div class="camera-controls">
+    <button id="camera-toggle" type="button">START CAMERA</button>
+    <p id="camera-status" role="status" aria-live="polite">Camera is off.</p>
+  </div>
+
+  <script type="module">
+    const today = new Date();
+    const version = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    import(`./script.js?v=${version}`);
+  </script>
+</body>
 </html>
