@@ -3,19 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
+  <title>Puzzle</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <main class="board">
+    <h1>PUZZLE</h1>
 
-  <h1>Robbert Pattison Fan Website </h1>
+    <section class="play-area" aria-label="Drag each piece onto its matching silhouette">
+      <div class="target target--head" data-part="head" aria-label="Head silhouette">
+        <img src="images/HEAD.png" alt="">
+      </div>
+      <div class="target target--body" data-part="body" aria-label="Body silhouette">
+        <img src="images/BODY.png" alt="">
+      </div>
+      <div class="target target--legs" data-part="legs" aria-label="Legs silhouette">
+        <img src="images/LEGS.png" alt="">
+      </div>
 
-  <main>
-    <img src="images/RPForever.jpg" alt="Describe your image here">
+      <button class="piece piece--head" type="button" data-part="head" aria-label="Head puzzle piece">
+        <img src="images/HEAD.png" alt="" draggable="false">
+      </button>
+      <button class="piece piece--body" type="button" data-part="body" aria-label="Body puzzle piece">
+        <img src="images/BODY.png" alt="" draggable="false">
+      </button>
+      <button class="piece piece--legs" type="button" data-part="legs" aria-label="Legs puzzle piece">
+        <img src="images/LEGS.png" alt="" draggable="false">
+      </button>
+    </section>
   </main>
 
-  <h2> I love him in Dune, The Batman and Twilight. Now he is James Bond</h2>
-
+  <audio id="screech-sound" src="sounds/SCREECH.wav" preload="auto" loop></audio>
+  <audio id="pop-sound" src="sounds/POP.wav" preload="auto"></audio>
   <script src="script.js"></script>
 </body>
 </html>
